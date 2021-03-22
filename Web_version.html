@@ -1,0 +1,297 @@
+<html lang="en" dir="ltr"><head>
+    <meta charset="utf-8">
+    <title>Rent Prediciton</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<style>
+
+body {
+  background-color: #0096E7;
+  /* #225470 */
+}
+header {
+  color: #ffffff;
+}
+big {
+  color: #52b1db;
+}
+.card {
+  background-color: #d3dde2;
+  color: #225470;
+}
+.btn-primary, .btn-primary:hover {
+  background-color: #52b1db;
+  border-color: #52b1db;
+}
+input {
+  background-color: #f6f6f6;
+  color: #324754;
+}
+.time-hash {
+  font-size: .825em;
+}
+
+</style>
+  </head>
+  <body>
+
+    <header>
+      <div class="container pt-4 pb-2">
+        <img src="https://content.codecademy.com/programs/machine-learning/multiple-linear-regression/streeteasy.jpg" alt="StreetEasy">
+        <!--<h1>StreetEasy Rent Predictor</h1>-->
+    </div></header>
+    <article class="container">
+      <section class="card-group">
+        <div class="card">
+         <div class="card-body ">
+           <h5 class="card-title ">Rent: <br><small><span id="current-hash"></span></small></h5>
+           <p class="card-text text-center"><big><strong>Apartment Information</strong></big></p>
+
+             <form>
+
+               <!-- Borough-->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Borough</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="borough" value="Manhattan">
+                 </div>
+               </div>
+
+               <!-- Bedrooms -->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Bedrooms</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="bedrooms" value="1">
+                 </div>
+               </div>
+
+               <!-- Bathrooms -->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Bathrooms</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="bathrooms" value="1">
+                 </div>
+               </div>
+
+               <!-- Size (ft^2) -->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Size (ft²)</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="size_sqft" value="620">
+                 </div>
+               </div>
+
+               <!-- Minutes to Subway -->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Subway Station (min)</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="min_to_subway" value="12">
+                 </div>
+               </div>
+
+               <!-- Floor -->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Floor</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="floor" value="6">
+                 </div>
+               </div>
+
+               <!-- Buidling Age -->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Building Age (years)</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="building_age_yrs" value="52">
+                 </div>
+               </div>
+
+               <!-- No Fee -->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">No Fee</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="no_fee" value="0">
+                 </div>
+               </div>
+
+               <!-- Has Roofdeck-->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Has Roofdeck</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="has_roofdeck" value="1">
+                 </div>
+               </div>
+
+               <!-- Has In-Unit Washer/Dryer-->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Has In-Unit Washer/Dryer</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="has_washer_dryer" value="1">
+                 </div>
+               </div>
+
+               <!-- Has Doorman-->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Has Doorman</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="has_doorman" value="1">
+                 </div>
+               </div>
+
+               <!-- Has Elevator-->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Has Elevator</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="has_elevator" value="1">
+                 </div>
+               </div>
+
+               <!-- Has Dishwasher -->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Has Dishwasher</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="has_dishwasher" value="1">
+                 </div>
+               </div>
+
+               <!-- Has Patio -->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Has Patio</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="has_patio" value="1">
+                 </div>
+               </div>
+
+               <!-- Has Gym -->
+
+               <div class="form-group row">
+                 <label class="col-sm-3 col-form-label col-form-label-sm">Has Gym</label>
+                 <div class="col-sm-9">
+                   <input class="form-control form-control-sm" id="has_gym" value="1">
+                 </div>
+               </div>
+
+             </form>
+
+             <center><a href="" onclick="update_hash(); return false;" class="btn btn-primary">Predict Rent!</a></center>
+
+           </div>
+
+
+           <div class="card-footer bg-transparent">
+
+             Huge thank you to the StreetEasy Research team for this partnership and especially:
+
+             <ul>
+               <li><a href="https://streeteasy.com/blog/author/grantlong/" target="_blank">Grant Long</a> (Sr. Economist)</li>
+               <li><a href="https://streeteasy.com/blog/author/lauren/" target="_blank">Lauren Riefflin</a> (Sr. Marketing Manager)</li>
+             </ul>
+
+
+             <div hidden="" class="row time-hash">
+                 <div class="col-sm-3 pb-2">
+                   Time Stamp:
+                 </div>
+                 <div class="col-sm-9">
+                    <span id="time-stamp"></span>
+                 </div>
+                 <div class="col-sm-3">
+                       Previous Hash:
+                 </div>
+                 <div class="col-sm-9">
+                    <span id="prev-hash"></span>
+                 </div>
+
+
+             </div>
+           </div>
+         </div>
+       
+      </section>
+    </article>
+    <script type="text/javascript">
+      var previous_hash = '00000';
+
+      function update_hash () {
+
+      var update_hash = document.getElementById("current-hash");
+      var time_stamp = document.getElementById("time-stamp");
+      var prev_hash = document.getElementById("prev-hash");
+      var sender = document.getElementById("sender");
+      var recipient = document.getElementById("recipient");
+      var date = new Date();
+      var ms = date.getMilliseconds();
+      var string = new Date().toLocaleString();
+
+      var borough = document.getElementById("borough").value;
+
+      var bedrooms = document.getElementById("bedrooms").value;
+      var bathrooms = document.getElementById("bathrooms").value;
+      var size_sqft = document.getElementById("size_sqft").value;
+      var min_to_subway = document.getElementById("min_to_subway").value;
+      var floor = document.getElementById("floor").value;
+      var building_age_yrs = document.getElementById("building_age_yrs").value;
+      var no_fee = document.getElementById("no_fee").value;
+      var has_roofdeck = document.getElementById("has_roofdeck").value;
+      var has_washer_dryer = document.getElementById("has_washer_dryer").value;
+      var has_doorman = document.getElementById("has_doorman").value;
+      var has_elevator = document.getElementById("has_elevator").value;
+      var has_dishwasher = document.getElementById("has_dishwasher").value;
+      var has_patio = document.getElementById("has_patio").value;
+      var has_gym = document.getElementById("has_gym").value;
+
+      if (borough === "Manhattan") {
+
+        var hash = -344.6858796 + -302.73009383 * parseInt(bathrooms) + 1199.3859951 * parseInt(bedrooms) + 4.79976742 * parseInt(size_sqft) + -24.28993151 * parseInt(min_to_subway) + 24.19824177 * parseInt(floor)
+      + -7.58272473 * parseInt(building_age_yrs) + -140.90664773 * parseInt(no_fee) + 48.85017415 * parseInt(has_roofdeck) + 191.4257324 * parseInt(has_washer_dryer) + -151.11453388 * parseInt(has_doorman)
+      + 89.408889 * parseInt(has_elevator) + -57.89714551 * parseInt(has_dishwasher) + -19.31948556 * parseInt(has_patio) + -38.92369828 * parseInt(has_gym);
+
+      }
+
+      else if (borough === "Brooklyn") {
+
+        var hash = 280.85968219 + -196.67177625 * parseInt(bathrooms) + 785.40073377 * parseInt(bedrooms) + 2.94579148 * parseInt(size_sqft) + -37.78690683 * parseInt(min_to_subway) + 13.01784892 * parseInt(floor)
+      + -4.10092423 * parseInt(building_age_yrs) + 123.089506 * parseInt(no_fee) + 99.61520874 * parseInt(has_roofdeck) + -14.55629062 * parseInt(has_washer_dryer) + -330.26816471 * parseInt(has_doorman)
+      + 85.07118067 * parseInt(has_elevator) + -11.78666927 * parseInt(has_dishwasher) + 260.68383056 * parseInt(has_patio) + 396.24793842 * parseInt(has_gym);
+
+      }
+
+      else if (borough === "Queens") {
+
+        var hash = 940.52882759 + 259.49483776 * parseInt(bathrooms) + 472.15466299 * parseInt(bedrooms) + 0.97777539 * parseInt(size_sqft) + -10.29535775 * parseInt(min_to_subway) + 33.05646388 * parseInt(floor)
+      + -8.12803401 * parseInt(building_age_yrs) + 259.14494075 * parseInt(no_fee) + 62.78960059 * parseInt(has_roofdeck) + 124.40966155 * parseInt(has_washer_dryer) + 56.38161397 * parseInt(has_doorman)
+      + 157.69503746 * parseInt(has_elevator) + -195.65879788 * parseInt(has_dishwasher) + 237.50188285 * parseInt(has_patio) + 84.89712538 * parseInt(has_gym);
+
+      }
+
+      // round to 2 decimal places
+      hash = "$" + hash.toFixed(2)
+      // var hash = CryptoJS.SHA256(hash_me);
+
+      update_hash.innerHTML = hash;
+      time_stamp.innerHTML = string + ' ' + (ms/1000) + 'sec';
+      prev_hash.innerHTML = previous_hash;
+      // previous_hash = hash;
+      }
+
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/sha256.js"></script>
+  
+
+</body></html>
